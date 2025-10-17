@@ -59,7 +59,7 @@ CREATE TABLE Venda (
     FOREIGN KEY (id_game) REFERENCES Game(id_game) ON DELETE CASCADE
 );
 
-## 🎮 Inserindo Dados Iniciais
+🎮 Inserindo Dados Iniciais
 
 Jogos, clientes e vendas já pré-cadastrados para testes:
 
@@ -92,14 +92,14 @@ INSERT INTO Venda (id_cliente, id_game, data_venda) VALUES
 (2, 4, '2025-10-12'),
 (4, 5, '2025-09-30');
 
-# 🔍 Consultas Úteis
+ 🔍 Consultas Úteis
 Objetivo	Comando SQL
 Ver todos os games	SELECT * FROM Game;
 Clientes com Gmail	SELECT * FROM Cliente WHERE email LIKE '%gmail.com';
 Vendas em outubro	SELECT * FROM Venda WHERE data_venda BETWEEN '2025-10-01' AND '2025-10-31';
 RPGs em estoque	SELECT * FROM Game WHERE genero = 'RPG' ORDER BY nome ASC;
 
-# 🔧 Atualizações e Correções
+ 🔧 Atualizações e Correções
 -- Corrigir telefone de um cliente
 UPDATE Cliente
 SET telefone = '11999998888'
@@ -110,7 +110,7 @@ UPDATE Game
 SET ano_lancamento = 2023
 WHERE nome = 'Cyberpunk 2077';
 
-# 🧹 Limpeza e Exclusões
+🧹 Limpeza e Exclusões
 -- Remover game do catálogo
 DELETE FROM Game WHERE nome = 'FIFA 23';
 
