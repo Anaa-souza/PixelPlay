@@ -1,0 +1,84 @@
+PixelPlay
+
+
+CREATE DATABASE PixelPlay;
+
+CREATE TABLE Game (
+    id_game INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    plataforma VARCHAR(50),
+    genero VARCHAR(50),
+    ano_lancamento INT
+);
+
+CREATE TABLE Cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    telefone VARCHAR(20)
+);
+
+CREATE TABLE Venda (
+    id_venda INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    id_game INT,
+    data_venda DATE,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente) ON DELETE CASCADE,
+    FOREIGN KEY (id_game) REFERENCES Game(id_game) ON DELETE CASCADE
+);
+
+INSERT INTO Game (nome, plataforma, genero, ano_lancamento) VALUES
+('Elden Ring', 'PC', 'RPG', 2022),
+('FIFA 23', 'PS5', 'Esporte', 2022),
+('Minecraft', 'PC', 'Sandbox', 2011),
+('Zelda: Breath of the Wild', 'Switch', 'Aventura', 2017),
+('Cyberpunk 2077', 'PC', 'RPG', 2020);
+
+INSERT INTO Cliente (nome, email, telefone) VALUES
+("Ana Souza", "ana@gmail.com", 11988887777),
+("Gabrielly Alves", "gaby@hotmail.com", 11977778888),
+("Evellyn Lima", "evy@gmail.com", 11966665555),
+("Leandro Silva", "leandro@yahoo.com", 11955554444),
+("Matheus Fonseca", "matheus@gmail.com", 11944443333),
+("João Cancio", "joao@gmail.com", 11933332222),
+("Caio Martins", "caio@hotmail.com", 11922221111),
+("Moisés Fonseca", "moises@gmail.com", 11911110000),
+("Kelly Cristina", "kelly@gmail.com", 11900009999),
+("James Kaindé", "james@yahoo.com", 11888887777);
+
+
+INSERT INTO Venda (id_cliente, id_game, data_venda) VALUES
+(1, 1, '2025-10-01'),
+(3, 3, '2025-10-05'),
+(5, 2, '2025-10-10'),
+(2, 4, '2025-10-12'),
+(4, 5, '2025-09-30');
+
+SELECT * FROM Game;
+
+SELECT * FROM Cliente WHERE email LIKE '%gmail.com';
+
+SELECT * FROM Venda
+WHERE data_venda BETWEEN '2025-10-01' AND '2025-10-31';
+
+
+
+SELECT * FROM Game
+WHERE genero = 'RPG'
+ORDER BY nome ASC;
+
+
+UPDATE Cliente
+SET telefone = '11999998888'
+WHERE nome = 'Ana Souza';
+
+UPDATE Game
+
+SET ano_lancamento = 2023
+WHERE nome = 'Cyberpunk 2077';
+
+DELETE FROM Game
+WHERE nome = 'FIFA 23';
+
+DELETE FROM Venda
+WHERE data_venda < CURDATE() - INTERVAL 30 DAY;
